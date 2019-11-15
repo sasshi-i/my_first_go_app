@@ -5,3 +5,16 @@ services:
     tty: true
     volumes:
       - .:/go/src/my_first_app
+    depends_on:
+      - data
+  data:
+    image: mysql:5.7
+    ports:
+      - 53306:3306
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+    volumes:
+      - data:/var/lib/mysql
+volumes:
+  data:
